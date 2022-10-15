@@ -36,6 +36,7 @@ let contacts = [
 ]
 
 function agregarContacto(){
+    console.log("Agregando contacto")
     let id = prompt("Ponle un apodo: ")
     let nombre = prompt("Nombre: ") ;
     let lastname = prompt("Apellido: ") ;
@@ -51,14 +52,37 @@ function agregarContacto(){
     return console.log( id +" agregado")
 }
 
-function eliminarContacto(valueid){
-let index = contacts.findIndex((elemento) => {
-    return elemento.id === valueid;
-   }) ;
+function eliminarContacto(){
+    let cambio = prompt("¿Que contacto quiere eliminar?: ");
+    let index = contacts.findIndex((elemento) => {
+        return elemento.id === cambio;}) ;
    contacts.splice(index,1)
-   return console.log(valueid + " eliminado")
+   return console.log(cambio + " eliminado")
 
 }
 function mostrarContactos(){
     console.log(contacts)
 }
+function actualizarContacto(){
+    let cambio = prompt("¿Que contacto quiere cambiar?: ");
+    let index = contacts.findIndex((elemento) => {
+        return elemento.id === cambio;}) ;
+        console.log("Ingrese los nuevos valores: ")
+        let newNombre = prompt("Nombre: " );
+        let newApellido = prompt("Apellido: ");
+        let newTelefono = prompt("Telefono: ");
+        while(isNaN(newTelefono)){
+            console.error("El valor ingresado no es un numero, favor de volver a intentarlo")
+            newTelefono = "unknown"
+            newTelefono = prompt("Ingresa un número telefónico: ")
+        }
+        let newCiudad = prompt("Ciudad: ");
+        let newDireccion = prompt("Direccion: ");
+        let newObj = new Contact(cambio,newNombre,newApellido,newTelefono,newCiudad,newDireccion)
+    contacts.splice(index,1,newObj)
+
+}
+agregarContacto()
+eliminarContacto()
+actualizarContacto()
+mostrarContactos()
