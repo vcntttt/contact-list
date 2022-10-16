@@ -40,11 +40,11 @@ function agregarContacto(){
     let id = prompt("Ponle un apodo: ")
     let nombre = prompt("Nombre: ") ;
     let lastname = prompt("Apellido: ") ;
-    let numberphone = prompt("Ingresa un número telefónico: ") ;
+    let numberphone = parseInt(prompt("Ingresa un número telefónico: ")) ;
         while(isNaN(numberphone)){
             console.error("El valor ingresado no es un numero, favor de volver a intentarlo")
             numberphone = "unknown"
-            numberphone = prompt("Ingresa un número telefónico: ")
+            numberphone = parseInt(prompt("Ingresa un número telefónico: "))
         }
     let city = prompt("Ciudad: ")  ; 
     let adress = prompt("Direccion: ") ;
@@ -70,19 +70,32 @@ function actualizarContacto(){
         console.log("Ingrese los nuevos valores: ")
         let newNombre = prompt("Nombre: " );
         let newApellido = prompt("Apellido: ");
-        let newTelefono = prompt("Telefono: ");
+        let newTelefono = parseInt(prompt("Telefono: "));
         while(isNaN(newTelefono)){
             console.error("El valor ingresado no es un numero, favor de volver a intentarlo")
             newTelefono = "unknown"
-            newTelefono = prompt("Ingresa un número telefónico: ")
+            newTelefono = parseInt(prompt("Ingresa un número telefónico: "))
         }
         let newCiudad = prompt("Ciudad: ");
         let newDireccion = prompt("Direccion: ");
         let newObj = new Contact(cambio,newNombre,newApellido,newTelefono,newCiudad,newDireccion)
     contacts.splice(index,1,newObj)
+    return console.log(cambio + " modificado") }
 
-}
+function ordernarContactos(){
+    contacts.sort((a,b) => {
+        if (a.id < b.id){
+            return -1;
+        }
+        if(a.id > b.id){
+            return 1
+        }
+        return 0;
+    })}
+
+
 agregarContacto()
 eliminarContacto()
 actualizarContacto()
+ordernarContactos()
 mostrarContactos()
