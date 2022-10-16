@@ -39,11 +39,11 @@ function agregarContacto(){
     let id = prompt("Ponle un apodo: ")
     let nombre = prompt("Nombre: ") ;
     let lastname = prompt("Apellido: ") ;
-    let numberphone = prompt("Ingresa un número telefónico: ") ;
+    let numberphone = parseInt(prompt("Ingresa un número telefónico: ")) ;
         while(isNaN(numberphone)){
             console.error("El valor ingresado no es un numero, favor de volver a intentarlo")
             numberphone = "unknown"
-            numberphone = prompt("Ingresa un número telefónico: ")
+            numberphone = parseInt(prompt("Ingresa un número telefónico: "))
         }
     let city = prompt("Ciudad: ")  ; 
     let adress = prompt("Direccion: ") ;
